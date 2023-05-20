@@ -2,10 +2,13 @@
 name = "backend"
 version = "0.1.0"
 edition = "2021"
+
 [lib]
-name = "YourPackageName"
+name = "riscvbackend"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 deno_core = "0.187.0"
+serde_json = "1.0.96"
+serde_v8 = "0.98.0"

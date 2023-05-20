@@ -28,6 +28,8 @@ name = "backend"
 version = "0.1.0"
 dependencies = [
  "deno_core",
+ "serde_json",
+ "serde_v8",
 ]
 
 [[package]]
