@@ -56,7 +56,10 @@ pub extern "C" fn emulator_cpu_execute(emu: *mut Emulator, executed_instruction:
                     rvemu::exception::Exception::EnvironmentCallFromMMode
                     | rvemu::exception::Exception::EnvironmentCallFromSMode
                     | rvemu::exception::Exception::EnvironmentCallFromUMode 
-                    =>{ *executed_instruction = 0x73 as u32},
+                    =>{ 
+                        *executed_instruction = 0x73 as u32;
+                        emu.as_mut().unwrap().cpu.pc += 4;
+                    },
                     rvemu::exception::Exception::InstructionAddressMisaligned => {*executed_instruction = 12 as u32},
                     rvemu::exception::Exception::InstructionAccessFault => *executed_instruction = 13 as u32,
                     rvemu::exception::Exception::IllegalInstruction(_) =>       *executed_instruction = 14 as u32,
