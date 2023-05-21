@@ -10,6 +10,7 @@ public partial class RVEmulator
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_create")]
     private static extern IntPtr _CreateEmulator();
 
+
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_load_program")]
     private static unsafe extern IntPtr _LoadProgram(IntPtr emu, byte[] array, UInt64 size);
 
