@@ -29,12 +29,7 @@ public class Game : MonoBehaviour
     public GameObject AsmEditor;
     public GameObject OOB;
 
-<<<<<<< Updated upstream
-    public Camera _camera;
-    private GameState _state;
-=======
     private GameState _state = GameState.Typing;
->>>>>>> Stashed changes
     private PlayerController _playerController;
     private TMP_InputField asmEditorText;
 
@@ -44,22 +39,14 @@ public class Game : MonoBehaviour
         OOB.GetComponent<OOB>().OnPlayer = Reset;
 
         asmEditorText = AsmEditor.GetComponent<TMP_InputField>();
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         _playerController = player.GetComponent<PlayerController>();
         Debug.Log(asmEditorText);
         RunButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-<<<<<<< Updated upstream
-            Debug.Log("hi");
-=======
             if(_state == GameState.Running) {
                 return;
             }
             _state = GameState.Running;
->>>>>>> Stashed changes
             var asm_text = asmEditorText.text;
             Debug.Log(asm_text);
             ulong errorline = 0;
@@ -73,14 +60,9 @@ public class Game : MonoBehaviour
             Debug.Log(BitConverter.ToUInt32(machine_code, 4));
 
             emulator.LoadProgram(machine_code);
-<<<<<<< Updated upstream
             var instruction_count = machine_code.Length/4;
             Debug.Log("Instruction count: " + instruction_count);
             for(int i=0; i<instruction_count; i++)
-=======
-            var moves = new Queue<Move>();
-            while (true)
->>>>>>> Stashed changes
             {
             Debug.Log("running new instr");
                 var instr = emulator.RunOnce();
