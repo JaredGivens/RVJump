@@ -78,3 +78,4 @@ crashlytics-build.properties
 backend/target/*
 interpreter/RVEmuSharp/*/bin/*
 interpreter/RVEmuSharp/*/obj/*
+interpreter/rvemu-c-bindings/target/*
