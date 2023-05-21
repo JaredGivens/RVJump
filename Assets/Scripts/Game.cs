@@ -14,7 +14,7 @@ enum GameState
     Finished,
 }
 
-enum ActionCode
+public enum ActionCode
 {
     Move,
     Turn,
@@ -62,15 +62,10 @@ public class Game : MonoBehaviour
         if (_runTime > ActionDur)
         {
             _runTime -= ActionDur;
-            switch ((ActionCode)regs[17])
-            {
-                case ActionCode.Move:
-                    // _playerController.Forward();
-                    break;
-                case ActionCode.Turn:
-                    // _playerController.Turn(regs[10]);
-                    break;
-            }
+            var action = new Action();
+            action.Code = regs[10];
+            action.Param = regs[11];
+            _playerController.Actions.Add(action);
         }
 
     }
