@@ -66,12 +66,12 @@ public class Game : MonoBehaviour
             var action = new Move();
             action.Code = regs[10] switch
             {
-                0 => honk,
-                1 => move forward
-                2 => turn
+                1 => ActionCode.Move,
+                2 => ActionCode.Turn,
+                3 => ActionCode.Otherwise
             };
             action.Param = regs[11];
-            _playerController.Actions.Add(action);
+            _playerController.Moves.Add(action);
         }
 
     }
