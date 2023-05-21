@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public float MoveDuration = 1;
     public float Distance = 6;
     private float _moveTime = 0;
-    private int _turnDirection = 0;
     private Move _currentMove = new Move {
         Code = MoveCode.Idle,
         Param = 0,

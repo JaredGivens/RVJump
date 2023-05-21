@@ -53,26 +53,17 @@ public class Game : MonoBehaviour
             ulong errorline = 0;
             var machine_code = RVAssembler.Assemble(asm_text, ref errorline);
             Debug.Log($"erorLine:{errorline}");
-            Debug.Log("hi");
             
             var emulator = new RVEmulator();
-            Debug.Log("hi");
 
             emulator.LoadProgram(machine_code);
             var instruction_count = machine_code.Length/4;
-            Debug.Log("en");
-            Debug.Log(BitConverter.ToUInt32(machine_code, 0));
-            Debug.Log(BitConverter.ToUInt32(machine_code, 4));
-            Debug.Log(BitConverter.ToUInt32(machine_code, 8));
-            Debug.Log(BitConverter.ToUInt32(machine_code, 12));
-            Debug.Log(BitConverter.ToUInt32(machine_code, 16));
             var moves = new Queue<Move>();
             for(int i=0; i<instruction_count; i++)
             {
                 var instr = emulator.RunOnce();
                 if (instr == 0x00000073)
                 {
-                    Debug.Log("x10 " + emulator.GetRegister(10));
                     var move = new Move
                     {
                         Code = emulator.GetRegister(10) switch
