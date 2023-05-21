@@ -39,6 +39,7 @@ static void RunTestCase32(UInt32[] instructions, Dictionary<UInt64, UInt64> expe
     RunTestCase(InstructionsToBytes(instructions), expectedValues);
 }
 
+
 UInt32[] ADD_TEST = new UInt32[] {
     //sub x1, x1, x1
     0x401080b3,
@@ -77,8 +78,19 @@ byte[] ASSEMBLER_TEST = RVAssembler.Assemble(String.Join('\n', new[] {
     "addi, x2, x2, 15"
      }));
 
+UInt64 errorLine = 0;
+
+byte[] ASSEMBLER_ERROR_TEST = RVAssembler.Assemble(String.Join('\n', new[] {
+    "xor x1, x1, x1",
+    "xor x2, x2, x2",
+    "addi x1, x1, 10",
+    "your mom"
+     }), ref errorLine);
+
 RunTestCase(ASSEMBLER_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 15 });
 RunTestCase32(ADD_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 2, [3] = 5 });
 RunTestCase32(SUB_TEST, new Dictionary<ulong, ulong> { [2] = 50, });
+
+Debug.Assert(errorLine == 4, "Assembler did not error correctly.");
 
 Console.WriteLine("All tests passed.");

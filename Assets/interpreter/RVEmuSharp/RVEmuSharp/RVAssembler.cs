@@ -7,7 +7,6 @@ namespace RVEmuSharp
     {
         private const string LIBRARY_NAME = "rvemu";
 
-
         [DllImport(LIBRARY_NAME, EntryPoint = "riscv_assemble", CharSet = CharSet.Ansi)]
         private static extern UInt64 RISCVAssemble([MarshalAs(UnmanagedType.LPStr)] string instructions, ref IntPtr output, ref UInt64 errorLine);
 
