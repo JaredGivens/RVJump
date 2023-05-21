@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_currentAciton) {
+        if(_currentAciton != null) {
             switch(_currentAction.Code) {
-                case ActionCode.Move:
+                case M.Move:
                     float dt = Math.Min(_actionTime, Time.deltaTime);
                     transform.position += transform.forward *
                         Distance  / AnimationDuration * dt;
@@ -50,10 +50,11 @@ public class PlayerController : MonoBehaviour
         _actionTime -= dt;
         if (_actionTime < 0) {
             _actionTime += ActionDuration;
-            if(_currentAciton) {
-                switch (_currentAciton.Code) {
-                    
-                }
+            _currentAciton =
+            if(_currentAciton != null) {
+                Feedbacks[_currentAciton.Code].PlayFeedbacks();
+            } else {
+                IdleFeedback.PlayFeedbacks();
             }
         }
     }
