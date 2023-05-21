@@ -18,7 +18,7 @@ public enum ActionCode
 {
     Move,
     Turn,
-    Otherwise
+    Honk
 }
 
 public class Game : MonoBehaviour
@@ -47,32 +47,33 @@ public class Game : MonoBehaviour
             var machine_code = RVAssembler.Assemble(asm_text);
             var emulator = new RVEmulator();
             emulator.LoadProgram(machine_code);
-            
-
-            
-            _playerController.Forward();
-        });
-
-    }
-
-    void Run(int code = 0)
-    {
-        var regs = new int[32];
-        regs[17] = code;
-        _runTime += Time.deltaTime;
-        if (_runTime > ActionDur)
-        {
-            _runTime -= ActionDur;
-            var action = new Move();
-            action.Code = regs[10] switch
+            while (true)
             {
-                1 => ActionCode.Move,
-                2 => ActionCode.Turn,
-                3 => ActionCode.Otherwise
-            };
-            action.Param = regs[11];
-            _playerController.Moves.Add(action);
-        }
+                var instr = emulator.RunOnce();
+                if (instr == 0x0)
+                {
+                    Debug.Log("Ran last instruction");
+                    break;
+                }
+                else if (instr == 0x00000073)
+                {
+                    Debug.Log("Ran ecall");
+                    var regs = new int[32];
 
+                    _runTime -= ActionDur;
+                    var action = new Move
+                    {
+                        Code = regs[10] switch
+                        {
+                            1 => ActionCode.Move,
+                            2 => ActionCode.Turn,
+                            _ => ActionCode.Honk
+                        },
+                        Param = regs[11]
+                    };
+                    _playerController.Moves.Add(action);
+                }
+            }
+        });
     }
 }
