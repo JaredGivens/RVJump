@@ -4,24 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public struct Move {
-    public ActionCode Code;
+public class Move {
+    public MoveCode Code;
     public int Param;
 }
 
 public class PlayerController : MonoBehaviour
 {
-    public float ActionDuration = 1;
+    public float MoveDuration = 1;
     public float Distance = 6;
     private float _yVel = 0;
-    private float _forwardTime = 0;
-    private float _actionTime = 0;
+    private float _moveTime = 0;
     private int _turnDirection = 0;
+    private Move _currentMove;
     public float JumpForce = 1;
     private Rigidbody _rigidbody;
-    public List<Move> Moves;
-    public Move _currentAciton;
-    public List<MMFeedback> feedbacks;
+    public Queue<Move> Moves = new Queue<Move>();
+    public MMFeedbacks IdleFeedbacks;
+    public List<MMFeedbacks> FeedbackMat;
 
     // Start is called before the first frame update
     void Start()
@@ -32,41 +32,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_currentAciton != null) {
-            switch(_currentAction.Code) {
-                case M.Move:
-                    float dt = Math.Min(_actionTime, Time.deltaTime);
-                    transform.position += transform.forward *
-                        Distance  / AnimationDuration * dt;
+        if(_currentMove != null) {
+            switch(_currentMove.Code) {
+                case MoveCode.Move:{
+                    float dt = Math.Min(_moveTime, Time.deltaTime);
+                    transform.position += transform.forward * 
+                        Distance  / MoveDuration * dt;
                     break;
-                case ActionCode.Turn:
-                    float dt = Math.Min(_actionTime, Time.deltaTime);
-                    transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / AnimationDuration, Vector3.up) * transform.rotation;
+                }
+                case MoveCode.Turn: {
+                    float dt = Math.Min(_moveTime, Time.deltaTime);
+                    transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / MoveDuration, Vector3.up) * transform.rotation;
                     break;
+                }
                 default:
                     break;
             }
         }
-        _actionTime -= dt;
-        if (_actionTime < 0) {
-            _actionTime += ActionDuration;
-            _currentAciton =
-            if(_currentAciton != null) {
-                Feedbacks[_currentAciton.Code].PlayFeedbacks();
+        _moveTime -= Time.deltaTime;
+        if (_moveTime < 0) {
+            _moveTime += MoveDuration;
+            if(Moves.Count != 0) {
+                _currentMove = Moves.Dequeue();
+                _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+                FeedbackMat[(int)_currentMove.Code]?.PlayFeedbacks();
             } else {
-                IdleFeedback.PlayFeedbacks();
+                _currentMove = null;
+                IdleFeedbacks?.PlayFeedbacks();
             }
         }
-    }
-
-    public void Forward() {
-        _forwardTime = AnimationDuration;
-        _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-    }
-
-    public void Turn(int dir) {
-        _turnTime = AnimationDuration;
-        _turnDirection = dir;
-        _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
     }
 }
