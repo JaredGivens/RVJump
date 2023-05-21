@@ -8,6 +8,10 @@ edition = "2018"
 
 [dependencies]
 rvemu = { package="rvemu", path = "../rvemu/" }
+deno_core = "0.187.0"
+serde_json = "1.0.96"
+serde_v8 = "0.98.0"
+
 
 [lib]
 name = "rvemu"
