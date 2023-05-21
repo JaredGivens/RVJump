@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
 {
     public Button RunButton;
     public GameObject player;
+    public Camera camera;
     private GameState _state;
     private float _runTime;
     private int ActionDur = 1;

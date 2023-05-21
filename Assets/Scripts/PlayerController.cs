@@ -3,46 +3,49 @@ using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public MMFeedbacks ForwardFeedback;
-    public MMFeedbacks TurnFeedback;
-    public float ForwardDuration = 1;
-    public float TurnDuration = 1;
-    public float Jump = 2;
-    public MMTween.MMTweenCurve ForwardHorCurve;
-    public MMTween.MMTweenCurve ForwardVertCurve;
-    public MMTween.MMTweenCurve TurnHorCurve;
-    public MMTween.MMTweenCurve TurnVertCurve;
+    public float AnimationDuration = 1;
+    public float Distance = 6;
+    private float _yVel = 0;
+    private float _forwardTime = 0;
+    private float _turnTime = 0;
+    private int _turnDirection = 0;
+    public float JumpForce = 1;
+    private Rigidbody _rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_forwardTime != 0) {
+            float dt = Math.Min(_forwardTime, Time.deltaTime);
+            transform.position += transform.forward *
+                Distance  / AnimationDuration * dt;
+            _forwardTime -= dt;
+        }
+        if (_turnTime > 0) {
+            float dt = Math.Min(_turnTime, Time.deltaTime);
+            transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / AnimationDuration, Vector3.up) * transform.rotation;
+            _turnTime -= dt;
+        }
     }
 
     public void Forward() {
-        // transform.position += transform.forward * 2;
-        MMTween.MoveTransform(this, transform, transform.position, transform.position + transform.forward * 2, null, 0, ForwardDuration, ForwardHorCurve);
-        ForwardFeedback?.PlayFeedbacks();
-        // MMTween.MoveTransform(this, transform, transform.position, transform.position + Vector3.up * Jump, null, 0, ForwardDuration, ForwardVertCurve);
+        _forwardTime = AnimationDuration;
+        _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
     }
 
     public void Turn(int dir) {
-        // transform.Rotate (new Vector3 (0, 0, 90));    
-        Transform rotateTransform = transform;
-        rotateTransform.Rotate(0, 90, 0, Space.World);
-        MMTween.MoveTransform(this, transform, transform, rotateTransform, null, 0, TurnDuration, TurnHorCurve);
-        TurnFeedback?.PlayFeedbacks();
-        // Transform moveTransform = transform;
-        // moveTransform.Translate(Vector3.up * Jump);
-        // MMTween.MoveTransform(this, transform, transform.position, transform.position, null, 0, TurnDuration, TurnVertCurve);
+        _turnTime = AnimationDuration;
+        _turnDirection = dir;
+        _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
     }
 }
