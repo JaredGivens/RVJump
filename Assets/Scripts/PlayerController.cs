@@ -4,17 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+public struct Action {
+    ActionCode Code;
+    int Param;
+}
 
 public class PlayerController : MonoBehaviour
 {
-    public float AnimationDuration = 1;
+    public float ActionDuration = 1;
     public float Distance = 6;
     private float _yVel = 0;
     private float _forwardTime = 0;
-    private float _turnTime = 0;
+    private float _actionTime = 0;
     private int _turnDirection = 0;
     public float JumpForce = 1;
     private Rigidbody _rigidbody;
+    public List<Action> Actions;
+    public Action _currentAciton;
+    public List<MMFeedback> feedbacks;
 
     // Start is called before the first frame update
     void Start()
@@ -25,16 +32,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_forwardTime != 0) {
-            float dt = Math.Min(_forwardTime, Time.deltaTime);
-            transform.position += transform.forward *
-                Distance  / AnimationDuration * dt;
-            _forwardTime -= dt;
+        if(_currentAciton) {
+            switch(_currentAction.Code) {
+                case ActionCode.Move:
+                    float dt = Math.Min(_actionTime, Time.deltaTime);
+                    transform.position += transform.forward *
+                        Distance  / AnimationDuration * dt;
+                    break;
+                case ActionCode.Turn:
+                    float dt = Math.Min(_actionTime, Time.deltaTime);
+                    transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / AnimationDuration, Vector3.up) * transform.rotation;
+                    break;
+                default:
+                    break;
+            }
         }
-        if (_turnTime > 0) {
-            float dt = Math.Min(_turnTime, Time.deltaTime);
-            transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / AnimationDuration, Vector3.up) * transform.rotation;
-            _turnTime -= dt;
+        _actionTime -= dt;
+        if (_actionTime < 0) {
+            _actionTime += ActionDuration;
+            if(_currentAciton) {
+                switch (_currentAciton.Code) {
+                    
+                }
+            }
         }
     }
 
