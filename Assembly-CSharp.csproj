@@ -67,10 +67,15 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Scripts\prompts.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\tokio_macros-b919e1d6afa3d2bf.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\pin_project_internal-12488ef2dc83e0cc.dll" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\thiserror_impl-fb8ff960ce76d872.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\futures_macro-b43a26f82f4c2558.dll" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\deno_ops-a595b0f301424f92.dll" />
     <None Include="Assets\Feel\readme.txt" />
     <None Include="Assets\Feel\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -81,12 +86,15 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\serde_derive-08027867a0ae5210.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\lazy_regex_proc_macros-d308a89f4099abeb.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\derive_more-d7da407d4b7743e0.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
