@@ -45,12 +45,12 @@ pub extern "C" fn emulator_load_program(emu: *mut Emulator, program_bytes: *cons
 }
 
 #[no_mangle]
-pub extern "C" fn emulator_cpu_execute(emu: *mut Emulator, executed_instruction: *mut u64) -> u64 {
+pub extern "C" fn emulator_cpu_execute(emu: *mut Emulator, executed_instruction: *mut u32) -> u32 {
     assert!(!emu.is_null());
 
     unsafe {
         match emu.as_mut().unwrap().cpu.execute() {
-            Ok(v) => *executed_instruction = v,
+            Ok(v) => *executed_instruction = v as u32,
             Err(err) => {
                 println!("{:?}", err);
                 panic!()
@@ -84,9 +84,13 @@ use std::ffi::c_char;
 use std::ffi::CStr;
 use std::ffi::CString;
 
-#[no_mange]
+#[no_mangle]
 pub extern "C" fn free_riscv_assemble(bytes: *mut u8) {
-    unsafe { Box::from_raw(bytes) }
+    assert!(!bytes.is_null());
+
+    unsafe {
+        let _ = Box::from_raw(bytes);
+    };
 }
 
 #[no_mangle]
@@ -106,7 +110,10 @@ pub extern "C" fn riscv_assemble(instruction: *const c_char, out: *mut *mut u8) 
     let mut instr_memory = Vec::new();
 
     for instr in instructions.split("\n") {
-        let wrapped_instr = format!("\ninstr = new Instruction('{}'); instr.bin", instr);
+        let wrapped_instr = format!(
+            "\nnew Instruction('{}', {{ 'ISA': COPTS_ISA.RV32I }}).bin",
+            instr
+        );
 
         let eval_result = eval(&mut runtime, wrapped_instr.into()).expect("Eval failed");
 
@@ -118,7 +125,9 @@ pub extern "C" fn riscv_assemble(instruction: *const c_char, out: *mut *mut u8) 
     let len = instr_memory.len();
 
     unsafe {
-        *out = instr_memory.into_boxed_slice().as_mut_ptr();
+        let mut boxed = instr_memory.into_boxed_slice();
+        *out = boxed.as_mut_ptr();
+        std::mem::forget(boxed);
     }
 
     len as u64

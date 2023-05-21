@@ -17,7 +17,7 @@ public class RVEmulator
     private static extern void _DestroyEmulator(IntPtr emu);
 
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_cpu_execute")]
-    private static extern UInt64 _RunOnce(IntPtr emu, ref UInt64 executedInstruction);
+    private static extern UInt64 _RunOnce(IntPtr emu, ref UInt32 executedInstruction);
 
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_set_register")]
     private static extern void _SetRegister(IntPtr emu, UInt64 index, UInt64 value);
@@ -44,7 +44,7 @@ public class RVEmulator
 
     public ulong RunOnce()
     {
-        ulong executed = 0;
+        uint executed = 0;
         _RunOnce(instance, ref executed);
         return executed;
     }
