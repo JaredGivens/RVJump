@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public struct Action {
-    ActionCode Code;
-    int Param;
+public struct Move {
+    public ActionCode Code;
+    public int Param;
 }
 
 public class PlayerController : MonoBehaviour
@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private int _turnDirection = 0;
     public float JumpForce = 1;
     private Rigidbody _rigidbody;
-    public List<Action> Actions;
-    public Action _currentAciton;
+    public List<Move> Moves;
+    public Move _currentAciton;
     public List<MMFeedback> feedbacks;
 
     // Start is called before the first frame update

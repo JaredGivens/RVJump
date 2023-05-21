@@ -18,6 +18,7 @@ public enum ActionCode
 {
     Move,
     Turn,
+    Otherwise
 }
 
 public class Game : MonoBehaviour
@@ -62,8 +63,13 @@ public class Game : MonoBehaviour
         if (_runTime > ActionDur)
         {
             _runTime -= ActionDur;
-            var action = new Action();
-            action.Code = regs[10];
+            var action = new Move();
+            action.Code = regs[10] switch
+            {
+                0 => honk,
+                1 => move forward
+                2 => turn
+            };
             action.Param = regs[11];
             _playerController.Actions.Add(action);
         }
