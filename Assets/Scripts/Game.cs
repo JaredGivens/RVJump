@@ -24,6 +24,7 @@ public class Game : MonoBehaviour
     public GameObject player;
     public GameObject AsmEditor;
 
+    public Camera camera;
     private GameState _state;
     private float _runTime;
     private int ActionDur = 1;
