@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 }
                 case MoveCode.Turn: {
-                    transform.rotation = Quaternion.AngleAxis( dt * _turnDirection * 90 / MoveDuration, Vector3.up) * transform.rotation;
+                    transform.rotation = Quaternion.AngleAxis( dt * _currentMove.Param * 90 / MoveDuration, Vector3.up) * transform.rotation;
                     break;
                 }
                 default:
