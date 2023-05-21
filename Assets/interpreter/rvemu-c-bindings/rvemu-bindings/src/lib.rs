@@ -94,32 +94,44 @@ pub extern "C" fn free_riscv_assemble(bytes: *mut u8) {
 }
 
 #[no_mangle]
-pub extern "C" fn riscv_assemble(instruction: *const c_char, out: *mut *mut u8) -> u64 {
-    let instructions = unsafe {
-        CString::from(CStr::from_ptr(instruction))
-            .into_string()
-            .unwrap()
-    };
+pub extern "C" fn riscv_assemble(
+    instruction: *const c_char,
+    out: *mut *mut u8,
+    error_line: *mut u64,
+) -> u64 {
+    unsafe { *error_line = 0 };
+
+    let instructions = unsafe { CString::from(CStr::from_ptr(instruction)).into_string() };
+
+    if instructions.is_err() {
+        return 0;
+    }
+
+    let instructions = instructions.unwrap();
 
     let mut runtime = JsRuntime::new(RuntimeOptions::default());
 
     let instruction_setup = String::from(include_str!("../encoder/Instruction.js"));
 
-    eval(&mut runtime, instruction_setup.into()).expect("Eval failed");
+    if let Err(_) = eval(&mut runtime, instruction_setup.into()) {
+        return 0;
+    }
 
     let mut instr_memory = Vec::new();
 
-    for instr in instructions.split("\n") {
+    for (i, instr) in instructions.split("\n").enumerate() {
         let wrapped_instr = format!(
             "\nnew Instruction('{}', {{ 'ISA': COPTS_ISA.RV32I }}).bin",
             instr
         );
 
-        let eval_result = eval(&mut runtime, wrapped_instr.into()).expect("Eval failed");
-
-        let instr_word = u32::from_str_radix(eval_result.as_str().unwrap(), 2).unwrap();
-
-        instr_memory.extend(instr_word.to_le_bytes());
+        if let Ok(eval_result) = eval(&mut runtime, wrapped_instr.into()) {
+            let instr_word = u32::from_str_radix(eval_result.as_str().unwrap(), 2).unwrap();
+            instr_memory.extend(instr_word.to_le_bytes());
+        } else {
+            unsafe { *error_line = (i + 1) as u64 }
+            return 0;
+        }
     }
 
     let len = instr_memory.len();
