@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using RVEmuSharp;
+using UnityEditor;
 
 enum GameState
 {
@@ -41,23 +43,15 @@ public class Game : MonoBehaviour
         RunButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             var asm_text = asmEditorText.text;
+            var machine_code = RVAssembler.Assemble(asm_text);
+            var emulator = new RVEmulator();
+            emulator.LoadProgram(machine_code);
+            
+
             
             _playerController.Forward();
         });
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch (_state)
-        {
-            case GameState.Typing:
-                break;
-            case GameState.Running:
-                Run();
-                break;
-        }
     }
 
     void Run(int code = 0)
