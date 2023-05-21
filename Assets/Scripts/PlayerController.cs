@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                         Param = 0,
                     };
                     if (Finished) {
-                         SceneManager.LoadScene("Level" + ++_level_number, LoadSceneMode.Additive);
+                         SceneManager.LoadScene("Level" + ++_level_number);
                     }
                     return;
                 }
