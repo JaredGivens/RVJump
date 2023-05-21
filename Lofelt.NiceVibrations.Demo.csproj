@@ -56,36 +56,36 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMProgressBar.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\CarDemo\Scripts\CarDemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMSignal.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoWall.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\VersionNumber.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMTouchButton.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\SoundSwitch.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\V2DemoManager.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\HapticClipsDemo\Scripts\HapticClipsDemoManager.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\WobbleDemo\Scripts\WobbleDemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMSpriteReplace.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMFPSUnlock.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMUIShaker.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\HapticCurve.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallPusher.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\ContinuousDemo\Scripts\ContinuousHapticsDemoManager.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoBall.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMSwitch.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\DemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\CarDemo\Scripts\PowerBarElement.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\EmphasisDemo\Scripts\EmphasisHapticsDemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\Pagination.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\NiceVibrationsDemoHelpers.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\RegularPresetsDemo\RegularPresetsDemoManager.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\WobbleDemo\Scripts\WobbleButton.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMKnob.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMFPSCounter.cs" />
-    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallTouchZone.cs" />
     <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\HapticClipsDemo\Scripts\HapticClipsDemoRotator.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\CarDemo\Scripts\CarDemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\HapticClipsDemo\Scripts\HapticClipsDemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\WobbleDemo\Scripts\WobbleDemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMUIShaker.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoBall.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMSwitch.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\VersionNumber.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallPusher.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\ContinuousDemo\Scripts\ContinuousHapticsDemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\NiceVibrationsDemoHelpers.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallTouchZone.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMProgressBar.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\DemoAssets\BallDemo\Scripts\BallDemoWall.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\SoundSwitch.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\V2DemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMFPSUnlock.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\HapticCurve.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\DemoManager.cs" />
+    <Compile Include="Assets\Feel\NiceVibrations\Demo\_Common\Scripts\UI\MMKnob.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Feel\NiceVibrations\Demo\_Common\Shaders\MaskedUI.shader" />

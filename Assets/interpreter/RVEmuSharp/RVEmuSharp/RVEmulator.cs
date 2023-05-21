@@ -18,7 +18,7 @@ namespace RVEmuSharp
         private static extern void _DestroyEmulator(IntPtr emu);
 
         [DllImport(LIBRARY_NAME, EntryPoint = "emulator_cpu_execute")]
-        private static extern UInt64 _RunOnce(IntPtr emu, ref UInt32 executedInstruction);
+        private static extern UInt32 _RunOnce(IntPtr emu, ref UInt32 executedInstruction);
 
         [DllImport(LIBRARY_NAME, EntryPoint = "emulator_set_register")]
         private static extern void _SetRegister(IntPtr emu, UInt64 index, UInt64 value);
@@ -43,10 +43,11 @@ namespace RVEmuSharp
             _LoadProgram(instance, programBytes, (UInt64)programBytes.Length);
         }
 
-        public ulong RunOnce()
+        public uint RunOnce()
         {
             uint executed = 0;
-            _RunOnce(instance, ref executed);
+            var returncode = _RunOnce(instance, ref executed);
+            if(returncode != 0) throw new Exception("Error running instruction");
             return executed;
         }
 

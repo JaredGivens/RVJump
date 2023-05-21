@@ -57,27 +57,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMBloomShaker.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackColorGrading.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackVignette.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMAutoFocus.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMVignetteShaker.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Helpers\MMGlobalPostProcessingVolumeAutoBlend.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMLensDistortionShaker.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackChromaticAberration.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_ChromaticAberration.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackBloom.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackDepthOfField.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_Vignette.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_GlobalPPVolumeAutoBlend.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMDepthOfFieldShaker.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMColorGradingShaker.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackColorGrading.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMAutoFocus.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_LensDistortion.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackGlobalPPVolumeAutoBlend.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackDepthOfField.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackLensDistortion.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_Vignette.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMChromaticAberrationShaker.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMVignetteShaker.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_GlobalPPVolumeAutoBlend.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Helpers\MMGlobalPostProcessingVolumeAutoBlend.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_DepthOfField.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackLensDistortion.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMChromaticAberrationShaker.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_ColorGrading.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMDepthOfFieldShaker.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMLensDistortionShaker.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\MMF_Bloom.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Shakers\MMColorGradingShaker.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\Feedbacks\Legacy\MMFeedbackChromaticAberration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Feel\MMFeedbacks\MMFeedbacksForThirdParty\PostProcessing\MoreMountains.Feedbacks.PostProcessing.asmdef" />

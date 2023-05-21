@@ -56,18 +56,18 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMFeedbacksConfiguration.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Sequencing\MMSequencerEditor.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_PlayerCopy.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Shakers\MMWiggleEditor.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_PlayerEditor.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMFeedbackStyling.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMFeedbacksColors.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Sequencing\MMInputSequenceRecorderEditor.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_PlayerStyling.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\AttributeDrawers.cs" />
-    <Compile Include="Assets\Feel\MMFeedbacks\Editor\FeedbackListOutputter\FeedbackListOutputer.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_PlayerConfiguration.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMFeedbacksConfiguration.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\Editor\FeedbackListOutputter\FeedbackListOutputer.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Sequencing\MMSequencerEditor.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMFeedbackStyling.cs" />
+    <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\AttributeDrawers.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_FeedbackInspector.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Legacy\MMFeedbacksEditor.cs" />
     <Compile Include="Assets\Feel\MMFeedbacks\Editor\Core\MMF_FeedbackInspectorStyle.cs" />

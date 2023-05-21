@@ -52,8 +52,24 @@ pub extern "C" fn emulator_cpu_execute(emu: *mut Emulator, executed_instruction:
         match emu.as_mut().unwrap().cpu.execute() {
             Ok(v) => *executed_instruction = v as u32,
             Err(err) => {
-                println!("{:?}", err);
-                panic!()
+                match err{
+                    rvemu::exception::Exception::EnvironmentCallFromMMode
+                    | rvemu::exception::Exception::EnvironmentCallFromSMode
+                    | rvemu::exception::Exception::EnvironmentCallFromUMode 
+                    =>{ *executed_instruction = 0x73 as u32},
+                    rvemu::exception::Exception::InstructionAddressMisaligned => {*executed_instruction = 12 as u32},
+                    rvemu::exception::Exception::InstructionAccessFault => *executed_instruction = 13 as u32,
+                    rvemu::exception::Exception::IllegalInstruction(_) =>       *executed_instruction = 14 as u32,
+                    rvemu::exception::Exception::Breakpoint =>      *executed_instruction = 15 as u32,
+                    rvemu::exception::Exception::LoadAddressMisaligned =>       *executed_instruction = 16 as u32,
+                    rvemu::exception::Exception::LoadAccessFault =>         *executed_instruction = 17 as u32,
+                    rvemu::exception::Exception::StoreAMOAddressMisaligned =>       *executed_instruction = 18 as u32,
+                    rvemu::exception::Exception::StoreAMOAccessFault =>         *executed_instruction = 19 as u32,
+                    rvemu::exception::Exception::InstructionPageFault(_) =>         *executed_instruction = 20 as u32,
+                    rvemu::exception::Exception::LoadPageFault(_) =>        *executed_instruction = 21 as u32,
+                    rvemu::exception::Exception::StoreAMOPageFault(_) =>        *executed_instruction = 22 as u32,
+                    
+                }
             }
         };
     }
@@ -109,6 +125,7 @@ pub extern "C" fn riscv_assemble(
     }
 
     let instructions = instructions.unwrap();
+    // dbg!(instructions);
 
     let mut runtime = JsRuntime::new(RuntimeOptions::default());
 
@@ -123,31 +140,38 @@ pub extern "C" fn riscv_assemble(
     let mut instructions_filtered: Vec<&str> = Vec::new();
     let mut labels: HashMap<&str, usize> = HashMap::new();
 
-    let instrs: Vec<&str> = instructions.split("\n").collect();
-    for instr in instrs.iter() {
-      if instr.contains(":") {
-        let label_name = instr.split(":").collect::<Vec<&str>>()[1];
+    let clean_instrs = instructions.replace("\r\n", "\n");
+    let instrs = clean_instrs
+        .split('\n')
+        .map(|x| String::from(x.trim()))
+        .filter(|x| !x.is_empty())
+        .collect::<Vec<String>>();
 
-        labels.get(label_name).expect("Label name not found.");
-        labels.insert(&label_name, instructions_filtered.len()*4);
-      }
-      else {
-        instructions_filtered.push(instr);
-      }
+    for instr in instrs.iter() {
+        if instr.contains(":") {
+            let label_name = instr.split(":").collect::<Vec<&str>>()[0];
+
+            labels.get(label_name).expect("Label name not found.");
+            labels.insert(&label_name, instructions_filtered.len() * 4);
+        } else {
+            instructions_filtered.push(instr);
+        }
     }
 
-    for (i,instr) in instrs.iter().enumerate() {
+    for (i, instr) in instrs.iter().enumerate() {
         let mut tokens = instr.split_whitespace().collect::<Vec<&str>>();
 
         if tokens.len() > 0 && tokens[0] == "bne" {
-            let label_name = tokens[tokens.len()-1];
+            let label_name = tokens[tokens.len() - 1];
             let offset = labels.get(label_name).expect("label name not found 2.");
             let len = &tokens.len();
-            tokens[len-1] = &format!("{}",offset);
+            tokens[len - 1] = &format!("{}", offset);
         }
 
+        dbg!(instr);
+
         let wrapped_instr = format!(
-            "\nnew Instruction('{}', {{ 'ISA': COPTS_ISA.RV32I }}).bin",
+            "\n;new Instruction('{}', {{ 'ISA': COPTS_ISA.RV32I }}).bin",
             instr
         );
 
@@ -190,14 +214,21 @@ fn eval(context: &mut JsRuntime, code: FastString) -> Result<serde_json::Value, 
     }
 }
 
-// #[cfg(test)]
-// mod tests {
-//     use std::ptr::null;
+#[cfg(test)]
+mod tests {
+    use std::ptr::null;
 
-//     use crate::*;
+    use crate::*;
 
-//     #[test]
-//     fn it_works() {
-//         // riscv_assemble(CString::new("add x1,x2,x3\nsub x1,x2,x3\naddi x1,x2,3").unwrap().as_ptr());
-//     }
-// }
+    // #[test]
+    // fn it_works() {
+    //     riscv_assemble(
+    //         CString::new(
+    //             r#"add x1, x2, x3
+    //             addi a0, a2, 3"#,
+    //         )
+    //         .unwrap()
+    //         .as_ptr(),
+    //     );
+    // }
+}

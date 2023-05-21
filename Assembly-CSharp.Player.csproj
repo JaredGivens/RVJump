@@ -59,23 +59,20 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\CodeInputScript.cs" />
-    <Compile Include="Assets\interpreter\RVEmuSharp\RVEmuSharpTests\Program.cs" />
     <Compile Include="Assets\interpreter\RVEmuSharp\RVEmuSharp\RVAssembler.cs" />
+    <Compile Include="Assets\interpreter\RVEmuSharp\RVEmuSharpTests\Program.cs" />
     <Compile Include="Assets\interpreter\RVEmuSharp\RVEmuSharp\RVEmulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Scripts\prompts.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\tokio_macros-b919e1d6afa3d2bf.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\pin_project_internal-12488ef2dc83e0cc.dll" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\thiserror_impl-fb8ff960ce76d872.dll" />
+    <None Include="Assets\interpreter\RVEmuSharp\RVEmuSharp\obj\Debug\net7.0\RVEmuSharp.csproj.FileListAbsolute.txt" />
+    <None Include="Assets\Scripts\rvemu.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\futures_macro-b43a26f82f4c2558.dll" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\deno_ops-a595b0f301424f92.dll" />
     <None Include="Assets\Feel\readme.txt" />
     <None Include="Assets\Feel\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -86,15 +83,13 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\serde_derive-08027867a0ae5210.dll" />
+    <None Include="Assets\interpreter\RVEmuSharp\RVEmuSharpTests\obj\Debug\net7.0\RVEmuSharpTests.csproj.FileListAbsolute.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\lazy_regex_proc_macros-d308a89f4099abeb.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\interpreter\rvemu-c-bindings\target\debug\deps\derive_more-d7da407d4b7743e0.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +668,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="MoreMountains.Feedbacks.HDRP.Player.csproj">
+      <Project>{8942B8CC-A716-9A5A-34A7-66BCE9139540}</Project>
+      <Name>MoreMountains.Feedbacks.HDRP.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="MoreMountains.Feedbacks.Authorizations.Player.csproj">
+      <Project>{7B540083-13AF-028C-4B2A-DEB01A901C49}</Project>
+      <Name>MoreMountains.Feedbacks.Authorizations.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Player.csproj">
       <Project>{83A28BBE-71D9-9454-6C50-2B7FC1F05357}</Project>
       <Name>Unity.Timeline.Player</Name>
@@ -680,6 +683,10 @@
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
       <Project>{A3CD2B49-5244-2072-E3AC-896650081209}</Project>
       <Name>Unity.TextMeshPro.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="MoreMountains.Feedbacks.URP.Player.csproj">
+      <Project>{D524AC15-927F-3828-FEA9-60431688CA1E}</Project>
+      <Name>MoreMountains.Feedbacks.URP.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
       <Project>{D12C798C-ADC9-1BA4-C331-17188863A57D}</Project>
@@ -693,17 +700,37 @@
       <Project>{3033438E-6AB3-6590-2DF9-475C18D66D1E}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="MoreMountains.Feedbacks.MMTools.Player.csproj">
+      <Project>{3774A687-3F11-1065-19E0-344C1E174D57}</Project>
+      <Name>MoreMountains.Feedbacks.MMTools.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="MoreMountains.Feedbacks.PostProcessing.Player.csproj">
+      <Project>{4488015F-ED05-6CBA-2829-5A7F9EA542BC}</Project>
+      <Name>MoreMountains.Feedbacks.PostProcessing.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.Player.csproj">
+      <Project>{06166B38-4057-DD22-BE9E-2C6ACCD025D0}</Project>
+      <Name>Cinemachine.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.Player.csproj">
       <Project>{898865A9-4E4D-7209-E777-A953BAD6AE55}</Project>
       <Name>Unity.Services.Core.Analytics.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="MoreMountains.Feedbacks.NiceVibrations.Player.csproj">
+      <Project>{FD464882-309C-84C1-48D0-4B2140592A56}</Project>
+      <Name>MoreMountains.Feedbacks.NiceVibrations.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Environments.Player.csproj">
       <Project>{B6B7E591-3F83-3C47-33BB-6EA727E8EF02}</Project>
       <Name>Unity.Services.Core.Environments.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{D8B8C2DB-8726-0C30-516D-4570BDA631D1}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
+    <ProjectReference Include="MoreMountains.Feedbacks.Player.csproj">
+      <Project>{238BCFF9-B997-6E75-AB60-4F66BADAF0E7}</Project>
+      <Name>MoreMountains.Feedbacks.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Lofelt.NiceVibrations.Player.csproj">
+      <Project>{61859AEA-4535-7C5F-5A14-DA62CE5D9955}</Project>
+      <Name>Lofelt.NiceVibrations.Player</Name>
     </ProjectReference>
     <ProjectReference Include="MoreMountains.Feedbacks.TextMeshPro.Player.csproj">
       <Project>{B8FC2968-AEFF-553D-9932-5B833ECA72E0}</Project>
@@ -713,49 +740,17 @@
       <Project>{8F5221B0-1C57-1925-FF84-D5659C8DED5D}</Project>
       <Name>Lofelt.NiceVibrations.Demo.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.Player.csproj">
-      <Project>{238BCFF9-B997-6E75-AB60-4F66BADAF0E7}</Project>
-      <Name>MoreMountains.Feedbacks.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.Cinemachine.Player.csproj">
-      <Project>{ABC01EED-FAA8-A75C-428F-3D015E3C33A8}</Project>
-      <Name>MoreMountains.Feedbacks.Cinemachine.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.Authorizations.Player.csproj">
-      <Project>{7B540083-13AF-028C-4B2A-DEB01A901C49}</Project>
-      <Name>MoreMountains.Feedbacks.Authorizations.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.MMTools.Player.csproj">
-      <Project>{3774A687-3F11-1065-19E0-344C1E174D57}</Project>
-      <Name>MoreMountains.Feedbacks.MMTools.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="MoreMountains.Tools.Player.csproj">
       <Project>{098865AD-5E43-07C6-7A4A-A5728BE42215}</Project>
       <Name>MoreMountains.Tools.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.URP.Player.csproj">
-      <Project>{D524AC15-927F-3828-FEA9-60431688CA1E}</Project>
-      <Name>MoreMountains.Feedbacks.URP.Player</Name>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{D8B8C2DB-8726-0C30-516D-4570BDA631D1}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.PostProcessing.Player.csproj">
-      <Project>{4488015F-ED05-6CBA-2829-5A7F9EA542BC}</Project>
-      <Name>MoreMountains.Feedbacks.PostProcessing.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.NiceVibrations.Player.csproj">
-      <Project>{FD464882-309C-84C1-48D0-4B2140592A56}</Project>
-      <Name>MoreMountains.Feedbacks.NiceVibrations.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="MoreMountains.Feedbacks.HDRP.Player.csproj">
-      <Project>{8942B8CC-A716-9A5A-34A7-66BCE9139540}</Project>
-      <Name>MoreMountains.Feedbacks.HDRP.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Lofelt.NiceVibrations.Player.csproj">
-      <Project>{61859AEA-4535-7C5F-5A14-DA62CE5D9955}</Project>
-      <Name>Lofelt.NiceVibrations.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Cinemachine.Player.csproj">
-      <Project>{06166B38-4057-DD22-BE9E-2C6ACCD025D0}</Project>
-      <Name>Cinemachine.Player</Name>
+    <ProjectReference Include="MoreMountains.Feedbacks.Cinemachine.Player.csproj">
+      <Project>{ABC01EED-FAA8-A75C-428F-3D015E3C33A8}</Project>
+      <Name>MoreMountains.Feedbacks.Cinemachine.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
