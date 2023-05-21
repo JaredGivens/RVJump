@@ -14,7 +14,7 @@ enum GameState
     Finished,
 }
 
-public enum ActionCode
+public enum MoveCode
 {
     Move,
     Turn,
@@ -29,16 +29,14 @@ public class Game : MonoBehaviour
 
     public Camera camera;
     private GameState _state;
-    private float _runTime;
-    private int ActionDur = 1;
     private PlayerController _playerController;
-    private TextMeshProUGUI asmEditorText;
+    private TMP_InputField asmEditorText;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        asmEditorText = AsmEditor.GetComponent<TextMeshProUGUI>();
+        asmEditorText = AsmEditor.GetComponent<TMP_InputField>();
         Debug.Log(asmEditorText);
         _playerController = player.GetComponent<PlayerController>();
         RunButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -57,22 +55,20 @@ public class Game : MonoBehaviour
                 }
                 else if (instr == 0x00000073)
                 {
-                    Debug.Log("Ran ecall");
-                    var regs = new int[32];
 
-                    _runTime -= ActionDur;
-                    var action = new Move
+                    var move = new Move
                     {
-                        Code = regs[10] switch
+                        Code = emulator.GetRegister(10) switch
                         {
-                            1 => ActionCode.Move,
-                            2 => ActionCode.Turn,
-                            _ => ActionCode.Honk
+                            1 => MoveCode.Move,
+                            2 => MoveCode.Turn,
+                            _ => MoveCode.Honk
                         },
-                        Param = regs[11]
+                        Param = (int)emulator.GetRegister(11),
                     };
-                    _playerController.Moves.Add(action);
+                    _playerController.Moves.Enqueue(move);
                 }
+                break;
             }
         });
     }
