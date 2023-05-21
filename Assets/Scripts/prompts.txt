@@ -1,0 +1,63 @@
+################## Problem 1 ##################
+registers store values
+zero: hard wired to zero
+a0-7: function arguments
+a0-1: can be overridden with return values after funcition calls
+
+codes:
+a0:
+0 = honk
+1 = move forward
+2 = turn
+
+a1: 
+0 = honk
+1 = turn left
+-1  = right
+
+rd is the destination register
+rs1 and rs2 are source regsiters
+plain numbers are called "immediates"
+
+addi adds a number to a value in a register (rs). 
+The expression `rd = rs1 + imm` in assembly looks like:
+addi rd rs1 imm
+
+
+################## Problem 2 ##################
+`ecall` stands for "environment call"
+When you run `ecall`s, the game looks at the values in your registers and performs an action for you.
+The environment defines which values you'll set in which registers to perform the action you want.
+These definitions are called the system's ABI - the Application Binary Interface.
+
+Here is JumpRV's ABI:
+
+a0:
+1 = move forward
+otherwise = undefined for now
+
+
+################## Problem 3 ##################
+When you set a0 to 2(turn), the game will use the value in a1 to know which direction you want to turn.
+
+Here's the complete JumpRV ABI:
+a0:
+1 = move forward
+2 = turn
+otherise = honk
+
+a1:
+1 = turn left
+-1  = turn right
+otherwise = honk
+
+################## Problem 4 ##################
+So far, we've only written instructions that run in a sequence - one after another.
+Let's change that. 
+The BEQ instruction checks the value in rs1 and rs2 is the same, and "jumps" to the label if it is.
+Here's an example that runs the same instruction forever.
+
+label_name:
+beq a1,a1,label_name
+
+Mission: 
