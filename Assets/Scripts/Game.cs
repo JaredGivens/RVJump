@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
         _playerController = player.GetComponent<PlayerController>();
         RunButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            StartCoroutine(_playerController.Forward());
+            _playerController.Forward();
         });
 
     }

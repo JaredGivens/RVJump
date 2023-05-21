@@ -28,23 +28,21 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public IEnumerator Forward() {
+    public void Forward() {
         // transform.position += transform.forward * 2;
-        ForwardFeedback?.PlayFeedbacks();
         MMTween.MoveTransform(this, transform, transform.position, transform.position + transform.forward * 2, null, 0, ForwardDuration, ForwardHorCurve);
+        ForwardFeedback?.PlayFeedbacks();
         // MMTween.MoveTransform(this, transform, transform.position, transform.position + Vector3.up * Jump, null, 0, ForwardDuration, ForwardVertCurve);
-		yield return MMCoroutine.WaitFor(ForwardDuration);
     }
 
-    public IEnumerator Turn(int dir) {
+    public void Turn(int dir) {
         // transform.Rotate (new Vector3 (0, 0, 90));    
-        TurnFeedback?.PlayFeedbacks();
         Transform rotateTransform = transform;
         rotateTransform.Rotate(0, 90, 0, Space.World);
         MMTween.MoveTransform(this, transform, transform, rotateTransform, null, 0, TurnDuration, TurnHorCurve);
+        TurnFeedback?.PlayFeedbacks();
         // Transform moveTransform = transform;
         // moveTransform.Translate(Vector3.up * Jump);
         // MMTween.MoveTransform(this, transform, transform.position, transform.position, null, 0, TurnDuration, TurnVertCurve);
-		yield return MMCoroutine.WaitFor(TurnDuration);
     }
 }
