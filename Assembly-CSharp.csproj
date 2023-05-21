@@ -40,10 +40,10 @@
      <Compile Include="Assets/Scripts/Game.cs" />
      <Compile Include="Assets/Scripts/CodeInputScript.cs" />
      <Compile Include="Assets/interpreter/RVEmuSharp/RVEmuSharp/RVAssembler.cs" />
-     <Compile Include="Assets/interpreter/RVEmuSharp/RVEmuSharp/RVEmulator.cs" />
      <Compile Include="Assets/interpreter/RVEmuSharp/RVEmuSharpTests/Program.cs" />
      <Compile Include="Assets/Scripts/OOB.cs" />
      <Compile Include="Assets/Scripts/Finish.cs" />
+     <Compile Include="Assets/interpreter/RVEmuSharp/RVEmuSharp/RVEmulator.cs" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/Scripts/prompts.txt" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />

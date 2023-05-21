@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.23135948, g: 0.33001602, b: 0.3551559, a: 1}
+  m_IndirectSpecularColor: {r: 0.23135945, g: 0.33001602, b: 0.355156, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   RunButton: {fileID: 1557202219}
   player: {fileID: 879960324775954116}
   AsmEditor: {fileID: 853774876}
-  camera: {fileID: 0}
+  OOB: {fileID: 1326734687}
 --- !u!4 &1549805691
 Transform:
   m_ObjectHideFlags: 0

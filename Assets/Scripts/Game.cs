@@ -16,10 +16,11 @@ enum GameState
 
 public enum MoveCode
 {
-    Reset,
+    Honk,
     Move,
     Turn,
-    Honk
+    Idle,
+    Reset,
 }
 
 public class Game : MonoBehaviour
@@ -56,26 +57,22 @@ public class Game : MonoBehaviour
             
             var emulator = new RVEmulator();
             Debug.Log("hi");
-            Debug.Log(BitConverter.ToUInt32(machine_code, 0));
-            Debug.Log(BitConverter.ToUInt32(machine_code, 4));
 
             emulator.LoadProgram(machine_code);
             var instruction_count = machine_code.Length/4;
-            Debug.Log("Instruction count: " + instruction_count);
+            Debug.Log("en");
+            Debug.Log(BitConverter.ToUInt32(machine_code, 0));
+            Debug.Log(BitConverter.ToUInt32(machine_code, 4));
+            Debug.Log(BitConverter.ToUInt32(machine_code, 8));
+            Debug.Log(BitConverter.ToUInt32(machine_code, 12));
+            Debug.Log(BitConverter.ToUInt32(machine_code, 16));
+            var moves = new Queue<Move>();
             for(int i=0; i<instruction_count; i++)
             {
-            Debug.Log("running new instr");
                 var instr = emulator.RunOnce();
-            Debug.Log("after runonce");
-                Debug.Log($"instr: {instr}");
-                if (instr == 0x0)
+                if (instr == 0x00000073)
                 {
-                    Debug.Log("Ran last instruction");
-                    break;
-                }
-                else if (instr == 0x00000073)
-                {
-
+                    Debug.Log("x10 " + emulator.GetRegister(10));
                     var move = new Move
                     {
                         Code = emulator.GetRegister(10) switch
