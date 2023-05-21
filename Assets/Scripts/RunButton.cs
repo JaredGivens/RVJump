@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class RunButton : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,13 +14,5 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Move() {
-        transform.position += transform.forward * 2;
-    }
-
-    public void Turn(int dir) {
-        transform.Rotate (new Vector3 (0, 0, 90));    
     }
 }
