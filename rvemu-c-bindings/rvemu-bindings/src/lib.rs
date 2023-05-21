@@ -80,6 +80,7 @@ use deno_core::JsRuntime;
 use deno_core::RuntimeOptions;
 use serde_json;
 use serde_v8;
+use std::collections::HashMap;
 use std::ffi::c_char;
 use std::ffi::CStr;
 use std::ffi::CString;
@@ -119,7 +120,32 @@ pub extern "C" fn riscv_assemble(
 
     let mut instr_memory = Vec::new();
 
-    for (i, instr) in instructions.split("\n").enumerate() {
+    let mut instructions_filtered: Vec<&str> = Vec::new();
+    let mut labels: HashMap<&str, usize> = HashMap::new();
+
+    let instrs: Vec<&str> = instructions.split("\n").collect();
+    for instr in instrs.iter() {
+      if instr.contains(":") {
+        let label_name = instr.split(":").collect::<Vec<&str>>()[1];
+
+        labels.get(label_name).expect("Label name not found.");
+        labels.insert(&label_name, instructions_filtered.len()*4);
+      }
+      else {
+        instructions_filtered.push(instr);
+      }
+    }
+
+    for (i,instr) in instrs.iter().enumerate() {
+        let mut tokens = instr.split_whitespace().collect::<Vec<&str>>();
+
+        if tokens.len() > 0 && tokens[0] == "bne" {
+            let label_name = tokens[tokens.len()-1];
+            let offset = labels.get(label_name).expect("label name not found 2.");
+            let len = &tokens.len();
+            tokens[len-1] = &format!("{}",offset);
+        }
+
         let wrapped_instr = format!(
             "\nnew Instruction('{}', {{ 'ISA': COPTS_ISA.RV32I }}).bin",
             instr
@@ -163,21 +189,15 @@ fn eval(context: &mut JsRuntime, code: FastString) -> Result<serde_json::Value, 
         Err(err) => Err(format!("Evaling error: {err:?}")),
     }
 }
-/*
 
-#[cfg(test)]
-mod tests {
-    use crate::riscv_assemble;
-    use std::ffi::CString;
+// #[cfg(test)]
+// mod tests {
+//     use std::ptr::null;
 
-    #[test]
-    fn test_add() {
-        println!("{:?}", riscv_assemble(
-            CString::new("add x1,x2,x3\nsub x1,x2,x3\naddi x1,x2,3")
-                .unwrap()
-                .as_ptr(),
-        );
-    });
-}
+//     use crate::*;
 
-*/
+//     #[test]
+//     fn it_works() {
+//         // riscv_assemble(CString::new("add x1,x2,x3\nsub x1,x2,x3\naddi x1,x2,3").unwrap().as_ptr());
+//     }
+// }
