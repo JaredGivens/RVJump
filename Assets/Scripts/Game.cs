@@ -26,6 +26,7 @@ public class Game : MonoBehaviour
     public Button RunButton;
     public GameObject player;
     public GameObject AsmEditor;
+    public GameObject OOB;
 
     public Camera camera;
     private GameState _state;
