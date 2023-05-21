@@ -62,7 +62,7 @@ UInt32[] SUB_TEST = new UInt32[] {
     0x40208133,
 };
 
-RunTestCase(ADD_TEST, new Dictionary<ulong, ulong> { [1] = 10, });
+RunTestCase(ADD_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 2, [3] = 5 });
 RunTestCase(SUB_TEST, new Dictionary<ulong, ulong> { [2] = 50, });
 
 Console.WriteLine("All tests passed.");

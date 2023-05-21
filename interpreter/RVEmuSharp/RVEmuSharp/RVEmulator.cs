@@ -2,7 +2,7 @@
 
 namespace RVEmuSharp;
 
-public partial class RVEmulator
+public class RVEmulator
 {
     private const string LIBRARY_NAME = "rvemu";
 
