@@ -2,9 +2,6 @@
 using System.Diagnostics;
 using RVEmuSharp;
 
-
-var shellcode = new List<byte>();
-
 var instructions = new UInt32[] {
     //add x1,x2,x3 
     0x003100b3,
@@ -14,12 +11,9 @@ var instructions = new UInt32[] {
     0x00310093
 };
 
-foreach (var asm in instructions)
-    shellcode.AddRange(BitConverter.GetBytes(asm));
-
 var emulator = new RVEmulator();
 
-emulator.LoadProgram(shellcode.ToArray());
+emulator.LoadProgram(instructions.SelectMany(BitConverter.GetBytes).ToArray());
 
 for (int i = 0; i < instructions.Length; i++)
 {
