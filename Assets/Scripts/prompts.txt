@@ -4,7 +4,7 @@ zero: hard wired to zero
 a0-7: function arguments
 a0-1: can be overridden with return values after funcition calls
 
-codes:
+<color="green">codes:</color>
 a0:
 0 = honk
 1 = move forward

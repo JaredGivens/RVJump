@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.23135945, g: 0.33001602, b: 0.355156, a: 1}
+  m_IndirectSpecularColor: {r: 0.23135948, g: 0.33001602, b: 0.3551559, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -970,10 +970,10 @@ RectTransform:
   m_Father: {fileID: 1543582713}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -55.853}
-  m_SizeDelta: {x: 180, y: 270.8633}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: -40, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853774878
 MonoBehaviour:
@@ -1023,11 +1023,11 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 9
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 2
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
@@ -1399,11 +1399,11 @@ RectTransform:
   m_Father: {fileID: 620563251}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.75, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -117.06592, y: 0}
-  m_SizeDelta: {x: 234.13, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: -17.869019, y: 0}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1543582714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1524,10 +1524,10 @@ RectTransform:
   m_Father: {fileID: 1543582713}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 119.13}
-  m_SizeDelta: {x: 134.8541, y: 30.2603}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 100, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1557202218
 MonoBehaviour:
@@ -1709,10 +1709,10 @@ RectTransform:
   m_Father: {fileID: 2121724945}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.7056}
-  m_SizeDelta: {x: -40, y: 442.5887}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725656398
 MonoBehaviour:
@@ -1734,43 +1734,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'registers store values
-
-    zero: hard wired to zero
-
-    a0-7: function
-    arguments
-
-    a0-1: can be overridden with return values after funcition calls
-
-
-    destination
-    registers receive values denoted rd
-
-    source registers provide parameters
-    to the instructions denoted rs
-
-    immediate values are numbers
-
-
-    addi adds
-    immediate value to the source register and stores the result in rd where:
-
-
-    addi
-    rd rs imm
-
-
-    ecall makes a system call where the value in a0 is the code.
-
-
-    code
-    0 moves the vehicle forward.
-
-'
+  m_text: "registers store values\r\nzero: hard wired to zero\r\na0-7: function arguments\r\na0-1:
+    can be overridden with return values after funcition calls\r\n\r\n<color=\"green\">codes:</color>\r\na0:\r\n0
+    = honk\r\n1 = move forward\r\n2 = turn\r\n\r\na1: \r\n0 = honk\r\n1 = turn left\r\n-1 
+    = right\r\n\r\nrd is the destination register\r\nrs1 and rs2 are source regsiters\r\nplain
+    numbers are called \"immediates\"\r\n\r\naddi adds a number to a value in a register
+    (rs). \r\nThe expression `rd = rs1 + imm` in assembly looks like:\r\naddi rd
+    rs1 imm\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 62df19b478738554c8384fe82dae1fe6, type: 2}
+  m_sharedMaterial: {fileID: 6875757138707797424, guid: 62df19b478738554c8384fe82dae1fe6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1879,10 +1852,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.5, y: 0}
-  m_SizeDelta: {x: 253, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.4, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -152, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2121724946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,7 +1995,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
