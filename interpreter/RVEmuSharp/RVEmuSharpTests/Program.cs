@@ -5,22 +5,25 @@ using RVEmuSharp;
 static byte[] InstructionsToBytes(UInt32[] instructions) =>
     instructions.SelectMany(BitConverter.GetBytes).ToArray();
 
-static RVEmulator RunInstructions(UInt32[] instructions)
+static RVEmulator RunInstructions(byte[] instructions)
 {
     RVEmulator? emulator = new();
 
-    emulator.LoadProgram(InstructionsToBytes(instructions));
+    emulator.LoadProgram(instructions);
 
-    for (int i = 0; i < instructions.Length; i++)
+    for (int i = 0; i < instructions.Length; i += 4)
     {
+        var current_instr = BitConverter.ToUInt32(instructions.Skip(i).Take(4).ToArray());
         var executed = emulator.RunOnce();
-        Debug.Assert(executed == instructions[i], "Instruction executed does not match input.");
+        Debug.Assert(executed == current_instr, $"Instruction executed ({executed}) does not match input ({current_instr}).");
     }
 
     return emulator;
 }
 
-static void RunTestCase(UInt32[] instructions, Dictionary<UInt64, UInt64> expectedValues)
+static RVEmulator RunInstructions32(UInt32[] instructions) => RunInstructions(InstructionsToBytes(instructions));
+
+static void RunTestCase(byte[] instructions, Dictionary<UInt64, UInt64> expectedValues)
 {
     var emulator = RunInstructions(instructions);
 
@@ -30,6 +33,11 @@ static void RunTestCase(UInt32[] instructions, Dictionary<UInt64, UInt64> expect
         Debug.Assert(registerValue == kvp.Value, $"Register x{kvp.Key} (value: {registerValue}) does not match expected value ({kvp.Value})");
 
     }
+}
+
+static void RunTestCase32(UInt32[] instructions, Dictionary<UInt64, UInt64> expectedValues)
+{
+    RunTestCase(InstructionsToBytes(instructions), expectedValues);
 }
 
 UInt32[] ADD_TEST = new UInt32[] {
@@ -62,7 +70,16 @@ UInt32[] SUB_TEST = new UInt32[] {
     0x40208133,
 };
 
-RunTestCase(ADD_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 2, [3] = 5 });
-RunTestCase(SUB_TEST, new Dictionary<ulong, ulong> { [2] = 50, });
+
+byte[] ASSEMBLER_TEST = RVAssembler.Assemble(String.Join('\n', new[] {
+    "xor x1, x1, x1",
+    "xor x2, x2, x2",
+    "addi x1, x1, 10",
+    "addi, x2, x2, 15"
+     }));
+
+RunTestCase(ASSEMBLER_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 15 });
+RunTestCase32(ADD_TEST, new Dictionary<ulong, ulong> { [1] = 10, [2] = 2, [3] = 5 });
+RunTestCase32(SUB_TEST, new Dictionary<ulong, ulong> { [2] = 50, });
 
 Console.WriteLine("All tests passed.");
