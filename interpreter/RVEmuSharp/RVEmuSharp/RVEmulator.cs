@@ -9,8 +9,9 @@ public partial class RVEmulator
 
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_create")]
     private static extern IntPtr _CreateEmulator();
+
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_load_program")]
-    private static unsafe extern IntPtr _LoadProgram(IntPtr emu, byte* array, UInt64 size);
+    private static unsafe extern IntPtr _LoadProgram(IntPtr emu, byte[] array, UInt64 size);
 
     [DllImport(LIBRARY_NAME, EntryPoint = "emulator_destroy")]
     private static extern void _DestroyEmulator(IntPtr emu);
@@ -38,13 +39,8 @@ public partial class RVEmulator
 
     public void LoadProgram(byte[] programBytes)
     {
-        unsafe
-        {
-            fixed (byte* bytes = programBytes)
-            {
-                _LoadProgram(instance, bytes, (UInt64)programBytes.Length);
-            }
-        }
+
+        _LoadProgram(instance, programBytes, (UInt64)programBytes.Length);
 
     }
 
