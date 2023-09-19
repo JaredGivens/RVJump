@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+    <ui:VisualElement name="Editor" style="flex-grow: 1; background-color: rgb(87, 83, 83); align-self: flex-start; width: 529px; align-items: stretch; height: 1060px;">
+        <ui:VisualElement name="TextField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 945px; width: 526px; align-self: flex-start;" />
+        <ui:VisualElement name="ToolBar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: flex-start; height: 68px; width: 526px;" />
+    </ui:VisualElement>
+</ui:UXML>
