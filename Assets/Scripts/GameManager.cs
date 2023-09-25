@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         // Get editor components
         _asmEditor = AsmEditorObject.GetComponent<AsmEditor>();
         FinishLineObject.GetComponent<FinishLine>().OnPlayer = LevelFinishedEvent;
-        // OutOfBoundsObject.GetComponent<OutOfBounds>().OnPlayer = AlertUser;
+        OutOfBoundsObject.GetComponent<OutOfBounds>().OnPlayer = ResetPlayer; // TODO: TEMP
 
         // Add event to GUI buttons
         RunButton.onClick.AddListener(() => {
@@ -177,6 +177,9 @@ public class GameManager : MonoBehaviour
                     },
                     Param = (int)emulator.GetRegister(11),
                 };
+                if (moveInstruction.Code == MoveCode.Turn) {
+                    Debug.Log("im turning");
+                }
                 moveQueue.Enqueue(moveInstruction);
             }
         }

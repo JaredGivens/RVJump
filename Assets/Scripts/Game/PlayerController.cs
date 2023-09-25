@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // wtf
+        // TODO: needs to be changed
         _moveTime += MoveDuration;
         if (MoveQueue != null) {
             if (MoveQueue.Count == 0) {
